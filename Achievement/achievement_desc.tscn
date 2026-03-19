@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dcsrx1hgrwe21"]
+
+[ext_resource type="Script" uid="uid://cw6a2f6w5x7t0" path="res://Achievement/achievement_desc.gd" id="1_e1s4n"]
+[ext_resource type="Texture2D" uid="uid://c6fkl6neoa2fd" path="res://icon.svg" id="1_s65w3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s65w3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e1s4n"]
+
+[node name="VBoxContainer" type="VBoxContainer" unique_id=438633510]
+custom_minimum_size = Vector2(450, 100)
+offset_right = 417.0
+offset_bottom = 43.0
+script = ExtResource("1_e1s4n")
+
+[node name="AchievementsDesc" type="HBoxContainer" parent="." unique_id=1093917953]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="AchievementsDesc" unique_id=1203665057]
+layout_mode = 2
+texture = ExtResource("1_s65w3")
+expand_mode = 3
+
+[node name="Title" type="VBoxContainer" parent="AchievementsDesc" unique_id=1477258093]
+layout_mode = 2
+
+[node name="Title" type="LineEdit" parent="AchievementsDesc/Title" unique_id=1799281099]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxEmpty_s65w3")
+placeholder_text = "Title"
+
+[node name="DesciptionTextEdit" type="TextEdit" parent="AchievementsDesc/Title" unique_id=459668278]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxEmpty_e1s4n")
+text = "desc de l'achievment ou du trophé présent ici, le texte est sensé wrap si trop grand"
+placeholder_text = "desc de l'achievment ou du trophé présent ici, le texte est sensé wrap si trop grand"
+editable = false
+autowrap_mode = 2
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+
+[node name="GuideDetail" type="RichTextLabel" parent="." unique_id=379913460]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/bold_font_size = 10
+theme_override_font_sizes/bold_italics_font_size = 10
+theme_override_font_sizes/italics_font_size = 10
+theme_override_font_sizes/mono_font_size = 10
+text = "Espace dédier a du richtext pour avoir un guide aidant à accomplir le trophé ou achievment"
+fit_content = true

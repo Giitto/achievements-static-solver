@@ -3,10 +3,14 @@
 [ext_resource type="Script" uid="uid://cafmudm0poted" path="res://main.gd" id="1_ig7tw"]
 
 [node name="Main" type="VBoxContainer" unique_id=533452990]
-custom_minimum_size = Vector2(0, 700)
+clip_contents = true
+custom_minimum_size = Vector2(0, 650)
+offset_right = 240.0
+offset_bottom = 650.0
 script = ExtResource("1_ig7tw")
 
 [node name="VBoxContainer" type="HBoxContainer" parent="." unique_id=306845109]
+clip_contents = true
 layout_mode = 2
 
 [node name="addAchivementButton" type="Button" parent="VBoxContainer" unique_id=1917735730]
@@ -22,4 +26,15 @@ popup/item_0/id = 0
 popup/item_1/text = "Load"
 popup/item_1/id = 1
 
+[node name="EditMode" type="CheckButton" parent="VBoxContainer" unique_id=94013553]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1629117373]
+custom_minimum_size = Vector2(0, 615)
+layout_mode = 2
+
+[node name="AchievmentBox" type="VBoxContainer" parent="ScrollContainer" unique_id=283068075]
+layout_mode = 2
+
 [connection signal="pressed" from="VBoxContainer/addAchivementButton" to="." method="_on_add_achivement_button_pressed"]
+[connection signal="toggled" from="VBoxContainer/EditMode" to="." method="_on_edit_mode_toggled"]

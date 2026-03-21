@@ -8,13 +8,16 @@ class_name Achievement
 @onready var title: LineEdit = $AchievementsDesc/Title/Title
 @onready var desciption_text_edit: TextEdit = $AchievementsDesc/Title/DesciptionTextEdit
 @onready var guide_detail: RichTextLabel = $GuideDetail
+@onready var delete_achievement_button: Button = $AchievementsDesc/DeleteAchievementButton
 @onready var guide_edit: TextEdit = $GuideEdit
 var bbcode_string: String = ""
 
 
 func _ready() -> void:
+	delete_achievement_button.visible = false
 	icon_click.size = icon.size
 	bbcode_string = guide_detail.text
+	guide_edit.visible = false
 	guide_edit.text = guide_detail.text
 	
 	## Setting up default state of FileDialog
@@ -31,6 +34,7 @@ func toggle_edit(act : bool) -> void:
 	toggle_guide_text(act)
 	title.editable = act
 	desciption_text_edit.editable = act
+	delete_achievement_button.visible = act
 
 func toggle_guide_text(act : bool) -> void:
 	if act :
@@ -56,3 +60,15 @@ func _icon_on_click_event() -> void:
 
 func _on_image_selection_file_selected(path: String) -> void:
 	icon.texture = ImageTexture.create_from_image(Image.load_from_file(path))
+
+
+func _on_delete_achievement_button_pressed() -> void:
+	print("Oui")
+	var root = self.get_parent()
+	while root is not RootElement || root == null:
+		root = root.get_parent()
+		
+	if root is RootElement:
+		root.troph_list.erase(self)
+		root.remove_child(self)
+		self.call_deferred("queue_free")

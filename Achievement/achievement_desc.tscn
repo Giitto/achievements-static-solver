@@ -26,18 +26,22 @@
 
 [node name="VBoxContainer" type="VBoxContainer" unique_id=438633510]
 custom_minimum_size = Vector2(248, 80)
-offset_right = 417.0
-offset_bottom = 43.0
+offset_right = 248.0
+offset_bottom = 112.0
+size_flags_horizontal = 0
 script = ExtResource("1_e1s4n")
 
 [node name="AchievementsDesc" type="HBoxContainer" parent="." unique_id=1093917953]
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="ImageSelection" type="FileDialog" parent="AchievementsDesc" unique_id=1549279237]
 
 [node name="Icon" type="TextureRect" parent="AchievementsDesc" unique_id=1203665057]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 expand_mode = 3
 
 [node name="IconClick" type="Button" parent="AchievementsDesc/Icon" unique_id=672957495]
@@ -50,33 +54,44 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_7oao5")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8em7u")
 
 [node name="Title" type="VBoxContainer" parent="AchievementsDesc" unique_id=1477258093]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Title" type="LineEdit" parent="AchievementsDesc/Title" unique_id=1799281099]
 layout_mode = 2
+size_flags_vertical = 0
 tooltip_text = "Achievment title"
 theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxEmpty_s65w3")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_ed6cy")
-placeholder_text = "Achievments Title"
+placeholder_text = "Title"
 editable = false
 
 [node name="DesciptionTextEdit" type="TextEdit" parent="AchievementsDesc/Title" unique_id=459668278]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 8
 tooltip_text = "Achievement description/text"
 theme_override_font_sizes/font_size = 9
 theme_override_styles/normal = SubResource("StyleBoxEmpty_e1s4n")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_q3qpa")
-placeholder_text = "desc de l'achievment ou du trophé présent ici, le texte est sensé wrap si trop grand"
+placeholder_text = "Achievement description"
 editable = false
 wrap_mode = 1
 autowrap_mode = 2
-scroll_fit_content_height = true
-scroll_fit_content_width = true
+
+[node name="DeleteAchievementButton" type="Button" parent="AchievementsDesc" unique_id=2142336132]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 3
+text = "x"
 
 [node name="GuideDetail" type="RichTextLabel" parent="." unique_id=379913460]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+size_flags_vertical = 8
 tooltip_text = "Text zone used to put commentary, note and or guide for the achievment"
 theme_override_font_sizes/normal_font_size = 10
 theme_override_font_sizes/bold_font_size = 10
@@ -84,19 +99,20 @@ theme_override_font_sizes/bold_italics_font_size = 10
 theme_override_font_sizes/italics_font_size = 10
 theme_override_font_sizes/mono_font_size = 10
 bbcode_enabled = true
-text = "Empty"
 fit_content = true
 
 [node name="GuideEdit" type="TextEdit" parent="." unique_id=782389217]
 visible = false
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxEmpty_4qs1n")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_txc05")
-text = "Empty"
-placeholder_text = "Write here"
+placeholder_text = "Write guide here"
 editable = false
 wrap_mode = 1
-scroll_fit_content_height = true
+scroll_fit_content_width = true
 
 [connection signal="file_selected" from="AchievementsDesc/ImageSelection" to="." method="_on_image_selection_file_selected"]
+[connection signal="pressed" from="AchievementsDesc/DeleteAchievementButton" to="." method="_on_delete_achievement_button_pressed"]

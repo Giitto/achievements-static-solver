@@ -1,8 +1,9 @@
 extends VBoxContainer
+class_name RootElement
 
 @onready var main: VBoxContainer = $"."
 @onready var menu_button: MenuButton = $VBoxContainer/MenuButton
-@onready var achievment_box: VBoxContainer = $ScrollContainer/AchievmentBox
+@onready var achievement_box: VBoxContainer = $ScrollContainer/AchievementBox
 
 var is_edit_on :bool = false
 
@@ -15,11 +16,10 @@ func _ready() -> void:
 		add_child(ach.instantiate())
 
 
-func _on_add_achivement_button_pressed() -> void:
+func _on_add_achievement_button_pressed() -> void:
 	var ui_scene = preload("res://Achievement/achievement_desc.tscn")
 	var ui_instance : Achievement = ui_scene.instantiate()
-	#ui_instance.toggle_edit(is_edit_on)
-	achievment_box.add_child(ui_instance)
+	achievement_box.add_child(ui_instance)
 	troph_list.append(ui_instance)
 
 func _on_option_item_selected(index: int) -> void:

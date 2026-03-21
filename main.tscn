@@ -13,7 +13,7 @@ script = ExtResource("1_ig7tw")
 clip_contents = true
 layout_mode = 2
 
-[node name="addAchivementButton" type="Button" parent="VBoxContainer" unique_id=1917735730]
+[node name="addAchievementButton" type="Button" parent="VBoxContainer" unique_id=1917735730]
 layout_mode = 2
 text = "Add achievment"
 
@@ -33,8 +33,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 615)
 layout_mode = 2
 
-[node name="AchievmentBox" type="VBoxContainer" parent="ScrollContainer" unique_id=283068075]
+[node name="AchievementBox" type="VBoxContainer" parent="ScrollContainer" unique_id=283068075]
 layout_mode = 2
 
-[connection signal="pressed" from="VBoxContainer/addAchivementButton" to="." method="_on_add_achivement_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/addAchievementButton" to="." method="_on_add_achievement_button_pressed"]
 [connection signal="toggled" from="VBoxContainer/EditMode" to="." method="_on_edit_mode_toggled"]

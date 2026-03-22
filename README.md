@@ -1,8 +1,8 @@
 # achievements-static-solver
-Simple portable application created in order to easily track achievement for a game. The aim of the app is to have a simple executable and human readable save file.
+Simple portable application created in order to easily track achievement for a game. The aim of the app is to have a simple executable and human readable save file for easy correction, creation et sharability.
 
 ### Why use Godot
-Godot can create easily portable app than can be de-compiled without too much trouble, I also want to learn more about UI logic and the engine.
+Godot can create easily portable app that can be de-compiled without too much trouble, I also want to learn more about UI logic and the engine. GDScript is the programing langage created for Godot, it's simple and has many included capability with Godot that makes it easier to use over c#.
 
 ### How to install
 Download the corresponding executable for your operating system from the [release page](https://github.com/Giitto/achievements-static-solver/releases) and place it where you want.
@@ -12,7 +12,7 @@ You can use the app as is, but since A.S.S is portable it is better to put the e
 
 I don't know a thing on UX et UI design, the app is crude and though with my habit in mind, if you have suggestion you can send them to me.
 
-At the top of the windows there is 3 button, the first create a new achievement bloc, the second is the option menu and loading and the third toggle on and off the edit mode.
+At the top of the windows there is 4 buttons, the first create a new achievement bloc, the second is the option menu and loading and the third toggle on and off the edit mode.
 ##### Add achievement
 Straight forward, add an achievement
 ##### Option
@@ -48,3 +48,5 @@ There is two option save and load, both of these option will open a window in or
 
 ##### Edit mode
 You can toggle on and off the edit mode a with the last button at the right. This mode enable the possibility to edit all text and the icon of the achievement. Clicking the image on edit mode will open a window to select an image to put in achievement icon, the type compatible with Godot are already filtered. You don't need to be in edit mode to mark and Achievement as done.
+##### Close
+Straight forward, prompt the user if he want to exit the app

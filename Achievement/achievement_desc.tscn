@@ -27,8 +27,11 @@
 
 [node name="VBoxContainer" type="VBoxContainer" unique_id=438633510]
 custom_minimum_size = Vector2(248, 80)
-offset_right = 248.0
-offset_bottom = 112.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 0
 script = ExtResource("1_e1s4n")
 
@@ -43,7 +46,8 @@ layout_mode = 2
 
 [node name="FoldButton" type="Button" parent="AchievementsDesc/LeftSide" unique_id=1473737341]
 layout_mode = 2
-theme_override_font_sizes/font_size = 1
+theme_override_font_sizes/font_size = 3
+text = "Fold achievement"
 autowrap_trim_flags = 192
 
 [node name="Icon" type="TextureRect" parent="AchievementsDesc/LeftSide" unique_id=1203665057]
@@ -89,7 +93,6 @@ placeholder_text = "Title"
 editable = false
 
 [node name="DeleteAchievementButton" type="Button" parent="AchievementsDesc/Title/ManageDeleteButton" unique_id=2142336132]
-layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -97,7 +100,7 @@ theme_override_font_sizes/font_size = 3
 text = "x"
 
 [node name="DescriptionTextEdit" type="TextEdit" parent="AchievementsDesc/Title" unique_id=459668278]
-custom_minimum_size = Vector2(0, 60)
+custom_minimum_size = Vector2(360, 30)
 layout_mode = 2
 size_flags_vertical = 8
 tooltip_text = "Achievement description/text"

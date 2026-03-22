@@ -7,12 +7,15 @@ class_name RootElement
 
 @onready var load_file_dialog: FileDialog = $LoadFileDialog
 @onready var save_file_dialog: FileDialog = $SaveFileDialog
+@onready var confirmation_dialog: ConfirmationDialog = $ConfirmationDialog
 
 var is_edit_on :bool = false
 
 var troph_list:Array[Achievement] = [];
 
 func _ready() -> void:
+	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,true)
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	menu_button.get_popup().id_pressed.connect(_on_option_item_selected)
 	for ach in troph_list:
 		ach.toggle_edit(is_edit_on)
@@ -98,3 +101,9 @@ func empty_troph_list() -> void :
 		achievement_box.remove_child(troph)
 		troph.call_deferred("queue_free")
 	troph_list.clear()
+
+func _on_quit_pressed() -> void:
+	confirmation_dialog.popup_centered()
+
+func _on_confirmation_dialog_confirmed() -> void:
+	get_tree().quit()

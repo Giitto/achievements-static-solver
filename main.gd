@@ -47,7 +47,6 @@ func add_achievement(data : Dictionary = {}) -> void:
 	troph_list.append(ui_instance)
 	if !data.is_empty():
 		ui_instance.from_dict(AchievementDict.new(data))
-	if is_edit_on:
 		ui_instance.toggle_edit(is_edit_on)
 
 func _on_option_item_selected(index: int) -> void:
@@ -88,6 +87,14 @@ func _on_load_file_dialog_file_selected(path: String) -> void:
 	var file = FileAccess.get_file_as_string(path)
 	var json: JSON = JSON.new()
 	var error = json.parse(file)
-	if error == OK:
+	if error == OK && !json.data.is_empty():
+		empty_troph_list()
 		for data in json.data:
 			add_achievement(data)
+	
+
+func empty_troph_list() -> void :
+	for troph in troph_list:
+		achievement_box.remove_child(troph)
+		troph.call_deferred("queue_free")
+	troph_list.clear()

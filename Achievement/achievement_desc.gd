@@ -7,6 +7,7 @@ var img_path: String = ""
 @onready var icon_click: Button = $AchievementsDesc/LeftSide/Icon/IconClick
 @onready var image_selection: FileDialog = $AchievementsDesc/ImageSelection
 
+@onready var done_check_box: CheckBox = $AchievementsDesc/Title/ManageDeleteButton/done
 @onready var title: LineEdit = $AchievementsDesc/Title/ManageDeleteButton/Title
 @onready var description_text_edit: TextEdit = $AchievementsDesc/Title/DescriptionTextEdit
 @onready var delete_achievement_button: Button = $AchievementsDesc/Title/ManageDeleteButton/DeleteAchievementButton
@@ -73,9 +74,9 @@ func toggle_guide_text(is_edit : bool) -> void:
 
 # Connect and disconnect the Icon button depending on edit mode
 func toggle_icon_onclick_event(is_edit : bool) -> void:
-	if is_edit :
+	if is_edit && !icon_click.pressed.is_connected(_icon_on_click_event):
 		icon_click.pressed.connect(_icon_on_click_event)
-	elif !is_edit :
+	elif !is_edit && icon_click.pressed.is_connected(_icon_on_click_event):
 		icon_click.pressed.disconnect(_icon_on_click_event)
 
 # Open FileDialog to load an image for this achievement
@@ -146,7 +147,9 @@ func from_dict(achievement_dict : AchievementDict) -> void:
 	guide_detail.text = achievement_dict.achievement_dict.get("guide_text")
 	guide_edit.text = achievement_dict.achievement_dict.get("guide_text")
 	is_achievement_done = achievement_dict.achievement_dict.get("is_achievement_done")
-	is_folded = achievement_dict.achievement_dict.get("is_folded")
+	done_check_box.button_pressed = is_achievement_done
+	is_folded = !achievement_dict.achievement_dict.get("is_folded")
+	_on_fold_button_pressed()
 
 func _to_string() -> String:
 	return to_dict().to_string()

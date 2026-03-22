@@ -5,7 +5,7 @@ Simple portable application created in order to easily track achievement for a g
 Godot can create easily portable app than can be de-compiled without too much trouble, I also want to learn more about UI logic and the engine.
 
 ### How to install
-Download the corresponding zip for your operating system from the [release page](https://github.com/Giitto/achievements-static-solver/releases) and decompress where you want as long as the 2 files are in the same folder.
+Download the corresponding executable for your operating system from the [release page](https://github.com/Giitto/achievements-static-solver/releases) and place it where you want.
 You can use the app as is, but since A.S.S is portable it is better to put the executable in a specific folder and create a shortcut for quick access. I also recommend doing this because the app doesn't create a copy or cache of achievement image for the moment and the save file use complete path to find the image.
 
 ### How to use
@@ -23,18 +23,26 @@ There is two option save and load, both of these option will open a window in or
 	    {
 	    	"description": "Yep, you just created an achievement pressing the button",
 	    	"guide_text": "",
-	    	"is_achievement_done": false,
+	    	"is_achievement_done": true,
 	    	"is_folded": false,
-	    	"path_to_icon": "",
+	    	"path_to_icon": "**PATH_FORMAT_CORRESPONDING_TO_YOUR_OPERATING_SYSTEM**",
 	    	"title": "Create an achievement"
 	    },
 	    {
 	    	"description": "You should not see this, do it.",
 	    	"guide_text": "Click the button over the icon to fold the achievement block",
+	    	"is_achievement_done": false,
+	    	"is_folded": false,
+	    	"path_to_icon": "**PATH_FORMAT_CORRESPONDING_TO_YOUR_OPERATING_SYSTEM**",
+	    	"title": "Mark as done and fold"
+	    },
+	    {
+	    	"description": "You should not see this",
+	    	"guide_text": "This should not be visible because it was loaded as folded",
 	    	"is_achievement_done": true,
 	    	"is_folded": true,
 	    	"path_to_icon": "",
-	    	"title": "Mark as done and fold"
+	    	"title": "Load as folded abd done"
 	    }
     ]
 

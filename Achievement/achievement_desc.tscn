@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dcsrx1hgrwe21"]
 
 [ext_resource type="Script" uid="uid://cw6a2f6w5x7t0" path="res://Achievement/achievement_desc.gd" id="1_e1s4n"]
+[ext_resource type="Texture2D" uid="uid://c6fkl6neoa2fd" path="res://assets/default_icon.svg" id="2_e1s4n"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e6t1r"]
 
@@ -37,14 +38,23 @@ size_flags_vertical = 0
 
 [node name="ImageSelection" type="FileDialog" parent="AchievementsDesc" unique_id=1549279237]
 
-[node name="Icon" type="TextureRect" parent="AchievementsDesc" unique_id=1203665057]
+[node name="LeftSide" type="VBoxContainer" parent="AchievementsDesc" unique_id=558016055]
+layout_mode = 2
+
+[node name="FoldButton" type="Button" parent="AchievementsDesc/LeftSide" unique_id=1473737341]
+layout_mode = 2
+theme_override_font_sizes/font_size = 1
+autowrap_trim_flags = 192
+
+[node name="Icon" type="TextureRect" parent="AchievementsDesc/LeftSide" unique_id=1203665057]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+texture = ExtResource("2_e1s4n")
 expand_mode = 3
 
-[node name="IconClick" type="Button" parent="AchievementsDesc/Icon" unique_id=672957495]
+[node name="IconClick" type="Button" parent="AchievementsDesc/LeftSide/Icon" unique_id=672957495]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_e6t1r")
@@ -58,9 +68,19 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Title" type="LineEdit" parent="AchievementsDesc/Title" unique_id=1799281099]
+[node name="ManageDeleteButton" type="HBoxContainer" parent="AchievementsDesc/Title" unique_id=1562734679]
 layout_mode = 2
 size_flags_vertical = 0
+
+[node name="done" type="CheckBox" parent="AchievementsDesc/Title/ManageDeleteButton" unique_id=1512253927]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Title" type="LineEdit" parent="AchievementsDesc/Title/ManageDeleteButton" unique_id=1799281099]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 tooltip_text = "Achievment title"
 theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxEmpty_s65w3")
@@ -68,7 +88,15 @@ theme_override_styles/read_only = SubResource("StyleBoxEmpty_ed6cy")
 placeholder_text = "Title"
 editable = false
 
-[node name="DesciptionTextEdit" type="TextEdit" parent="AchievementsDesc/Title" unique_id=459668278]
+[node name="DeleteAchievementButton" type="Button" parent="AchievementsDesc/Title/ManageDeleteButton" unique_id=2142336132]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 3
+text = "x"
+
+[node name="DescriptionTextEdit" type="TextEdit" parent="AchievementsDesc/Title" unique_id=459668278]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_vertical = 8
@@ -80,13 +108,6 @@ placeholder_text = "Achievement description"
 editable = false
 wrap_mode = 1
 autowrap_mode = 2
-
-[node name="DeleteAchievementButton" type="Button" parent="AchievementsDesc" unique_id=2142336132]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 3
-text = "x"
 
 [node name="GuideDetail" type="RichTextLabel" parent="." unique_id=379913460]
 custom_minimum_size = Vector2(0, 30)
@@ -115,4 +136,6 @@ wrap_mode = 1
 scroll_fit_content_width = true
 
 [connection signal="file_selected" from="AchievementsDesc/ImageSelection" to="." method="_on_image_selection_file_selected"]
-[connection signal="pressed" from="AchievementsDesc/DeleteAchievementButton" to="." method="_on_delete_achievement_button_pressed"]
+[connection signal="pressed" from="AchievementsDesc/LeftSide/FoldButton" to="." method="_on_fold_button_pressed"]
+[connection signal="toggled" from="AchievementsDesc/Title/ManageDeleteButton/done" to="." method="_on_done_toggled"]
+[connection signal="pressed" from="AchievementsDesc/Title/ManageDeleteButton/DeleteAchievementButton" to="." method="_on_delete_achievement_button_pressed"]

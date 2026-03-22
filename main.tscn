@@ -15,7 +15,7 @@ layout_mode = 2
 
 [node name="addAchievementButton" type="Button" parent="VBoxContainer" unique_id=1917735730]
 layout_mode = 2
-text = "Add achievment"
+text = "Add achievement"
 
 [node name="MenuButton" type="MenuButton" parent="VBoxContainer" unique_id=974817754]
 layout_mode = 2
@@ -36,5 +36,11 @@ layout_mode = 2
 [node name="AchievementBox" type="VBoxContainer" parent="ScrollContainer" unique_id=283068075]
 layout_mode = 2
 
+[node name="SaveFileDialog" type="FileDialog" parent="." unique_id=2005529454]
+
+[node name="LoadFileDialog" type="FileDialog" parent="." unique_id=1500800164]
+
 [connection signal="pressed" from="VBoxContainer/addAchievementButton" to="." method="_on_add_achievement_button_pressed"]
 [connection signal="toggled" from="VBoxContainer/EditMode" to="." method="_on_edit_mode_toggled"]
+[connection signal="file_selected" from="SaveFileDialog" to="." method="_on_save_file_dialog_file_selected"]
+[connection signal="file_selected" from="LoadFileDialog" to="." method="_on_load_file_dialog_file_selected"]

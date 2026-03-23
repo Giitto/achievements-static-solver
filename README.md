@@ -50,3 +50,20 @@ There is two option save and load, both of these option will open a window in or
 You can toggle on and off the edit mode a with the last button at the right. This mode enable the possibility to edit all text and the icon of the achievement. Clicking the image on edit mode will open a window to select an image to put in achievement icon, the type compatible with Godot are already filtered. You don't need to be in edit mode to mark and Achievement as done.
 ##### Close
 Straight forward, prompt the user if he want to exit the app
+
+### Achievement usage
+The achievement is composed of the listed component :
+
+- Icon/Image of the achievement
+- Fold button
+- Checkbox
+- Title
+- Delete button, only in edit mode
+- Description text bloc
+- Guide text bloc with Godot BBCode capabilities
+
+Only the checkbox and the fold button can be changed outside edit mode.
+Intended use of the checkbox is to mark the achievement as done, the fold button is to hide all text aside from the title.
+The guide text bloc is hidden if empty and shows up in edit mode. More info on BBCode in Godot [here](https://github.com/godotengine/godot-demo-projects/tree/4.2-31d1c0c/gui/rich_text_bbcode) and BBCode in general [here](https://www.bbcode.org/how-to-use-bbcode-a-complete-guide.php)
+
+

@@ -14,17 +14,23 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_ig7tw")
 
-[node name="VBoxContainer" type="HBoxContainer" parent="." unique_id=306845109]
-clip_contents = true
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1492424652]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=306845109]
 layout_mode = 2
 
-[node name="addAchievementButton" type="Button" parent="VBoxContainer" unique_id=1917735730]
+[node name="addAchievementButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1917735730]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Add achievement"
 
-[node name="MenuButton" type="MenuButton" parent="VBoxContainer" unique_id=974817754]
+[node name="Option" type="MenuButton" parent="MarginContainer/VBoxContainer" unique_id=974817754]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 0
@@ -35,13 +41,15 @@ popup/item_0/id = 0
 popup/item_1/text = "Load"
 popup/item_1/id = 1
 
-[node name="EditMode" type="CheckButton" parent="VBoxContainer" unique_id=94013553]
+[node name="EditMode" type="CheckButton" parent="MarginContainer/VBoxContainer" unique_id=94013553]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Edit"
 
-[node name="Quit" type="Button" parent="VBoxContainer" unique_id=1909110466]
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1909110466]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 0
@@ -52,18 +60,23 @@ custom_minimum_size = Vector2(0, 615)
 layout_mode = 2
 
 [node name="AchievementBox" type="VBoxContainer" parent="ScrollContainer" unique_id=283068075]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="SaveFileDialog" type="FileDialog" parent="." unique_id=2005529454]
+unique_name_in_owner = true
 
 [node name="LoadFileDialog" type="FileDialog" parent="." unique_id=1500800164]
+unique_name_in_owner = true
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="." unique_id=487752389]
+unique_name_in_owner = true
 dialog_text = "Are you sure you want to quit ? You maybe want to save before."
 
-[connection signal="pressed" from="VBoxContainer/addAchievementButton" to="." method="_on_add_achievement_button_pressed"]
-[connection signal="toggled" from="VBoxContainer/EditMode" to="." method="_on_edit_mode_toggled"]
-[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/addAchievementButton" to="." method="_on_add_achievement_button_pressed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/EditMode" to="." method="_on_edit_mode_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="file_selected" from="SaveFileDialog" to="." method="_on_save_file_dialog_file_selected"]
 [connection signal="file_selected" from="LoadFileDialog" to="." method="_on_load_file_dialog_file_selected"]
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

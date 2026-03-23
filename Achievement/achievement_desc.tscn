@@ -32,7 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
 script = ExtResource("1_e1s4n")
 
 [node name="AchievementsDesc" type="HBoxContainer" parent="." unique_id=1093917953]
@@ -40,6 +40,7 @@ layout_mode = 2
 size_flags_vertical = 0
 
 [node name="ImageSelection" type="FileDialog" parent="AchievementsDesc" unique_id=1549279237]
+unique_name_in_owner = true
 
 [node name="LeftSide" type="VBoxContainer" parent="AchievementsDesc" unique_id=558016055]
 layout_mode = 2
@@ -51,6 +52,7 @@ text = "Fold achievement"
 autowrap_trim_flags = 192
 
 [node name="Icon" type="TextureRect" parent="AchievementsDesc/LeftSide" unique_id=1203665057]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -59,6 +61,7 @@ texture = ExtResource("2_e1s4n")
 expand_mode = 3
 
 [node name="IconClick" type="Button" parent="AchievementsDesc/LeftSide/Icon" unique_id=672957495]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_e6t1r")
@@ -67,21 +70,24 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_yp0a0")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_7oao5")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8em7u")
 
-[node name="Title" type="VBoxContainer" parent="AchievementsDesc" unique_id=1477258093]
+[node name="TitleVBox" type="VBoxContainer" parent="AchievementsDesc" unique_id=1477258093]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ManageDeleteButton" type="HBoxContainer" parent="AchievementsDesc/Title" unique_id=1562734679]
+[node name="ManageDeleteButton" type="HBoxContainer" parent="AchievementsDesc/TitleVBox" unique_id=1562734679]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="done" type="CheckBox" parent="AchievementsDesc/Title/ManageDeleteButton" unique_id=1512253927]
+[node name="Done" type="CheckBox" parent="AchievementsDesc/TitleVBox/ManageDeleteButton" unique_id=1512253927]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Title" type="LineEdit" parent="AchievementsDesc/Title/ManageDeleteButton" unique_id=1799281099]
+[node name="Title" type="LineEdit" parent="AchievementsDesc/TitleVBox/ManageDeleteButton" unique_id=1799281099]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -92,14 +98,16 @@ theme_override_styles/read_only = SubResource("StyleBoxEmpty_ed6cy")
 placeholder_text = "Title"
 editable = false
 
-[node name="DeleteAchievementButton" type="Button" parent="AchievementsDesc/Title/ManageDeleteButton" unique_id=2142336132]
+[node name="DeleteAchievementButton" type="Button" parent="AchievementsDesc/TitleVBox/ManageDeleteButton" unique_id=2142336132]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 3
 text = "x"
 
-[node name="DescriptionTextEdit" type="TextEdit" parent="AchievementsDesc/Title" unique_id=459668278]
+[node name="DescriptionTextEdit" type="TextEdit" parent="AchievementsDesc/TitleVBox" unique_id=459668278]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(360, 30)
 layout_mode = 2
 size_flags_vertical = 8
@@ -112,7 +120,11 @@ editable = false
 wrap_mode = 1
 autowrap_mode = 2
 
-[node name="GuideDetail" type="RichTextLabel" parent="." unique_id=379913460]
+[node name="BoxContainer" type="BoxContainer" parent="." unique_id=589830421]
+layout_mode = 2
+
+[node name="GuideDetail" type="RichTextLabel" parent="BoxContainer" unique_id=379913460]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 8
@@ -125,7 +137,8 @@ theme_override_font_sizes/mono_font_size = 10
 bbcode_enabled = true
 fit_content = true
 
-[node name="GuideEdit" type="TextEdit" parent="." unique_id=782389217]
+[node name="GuideEdit" type="TextEdit" parent="BoxContainer" unique_id=782389217]
+unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -140,5 +153,5 @@ scroll_fit_content_width = true
 
 [connection signal="file_selected" from="AchievementsDesc/ImageSelection" to="." method="_on_image_selection_file_selected"]
 [connection signal="pressed" from="AchievementsDesc/LeftSide/FoldButton" to="." method="_on_fold_button_pressed"]
-[connection signal="toggled" from="AchievementsDesc/Title/ManageDeleteButton/done" to="." method="_on_done_toggled"]
-[connection signal="pressed" from="AchievementsDesc/Title/ManageDeleteButton/DeleteAchievementButton" to="." method="_on_delete_achievement_button_pressed"]
+[connection signal="toggled" from="AchievementsDesc/TitleVBox/ManageDeleteButton/Done" to="." method="_on_done_toggled"]
+[connection signal="pressed" from="AchievementsDesc/TitleVBox/ManageDeleteButton/DeleteAchievementButton" to="." method="_on_delete_achievement_button_pressed"]

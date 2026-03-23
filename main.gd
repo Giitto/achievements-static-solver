@@ -2,12 +2,12 @@ extends VBoxContainer
 class_name RootElement
 
 @onready var main: VBoxContainer = $"."
-@onready var menu_button: MenuButton = $VBoxContainer/MenuButton
-@onready var achievement_box: VBoxContainer = $ScrollContainer/AchievementBox
+@onready var menu_button: MenuButton = $%Option
+@onready var achievement_box: VBoxContainer = $%AchievementBox
 
-@onready var load_file_dialog: FileDialog = $LoadFileDialog
-@onready var save_file_dialog: FileDialog = $SaveFileDialog
-@onready var confirmation_dialog: ConfirmationDialog = $ConfirmationDialog
+@onready var load_file_dialog: FileDialog = $%LoadFileDialog
+@onready var save_file_dialog: FileDialog = $%SaveFileDialog
+@onready var confirmation_dialog: ConfirmationDialog = $%ConfirmationDialog
 
 var is_edit_on :bool = false
 
@@ -50,7 +50,7 @@ func add_achievement(data : Dictionary = {}) -> void:
 	troph_list.append(ui_instance)
 	if !data.is_empty():
 		ui_instance.from_dict(AchievementDict.new(data))
-		ui_instance.toggle_edit(is_edit_on)
+	ui_instance.toggle_edit(is_edit_on)
 
 func _on_option_item_selected(index: int) -> void:
 	if index == 0:

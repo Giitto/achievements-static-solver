@@ -2,33 +2,29 @@ extends VBoxContainer
 class_name Achievement
 
 var default_img = load("res://assets/default_icon.svg")
-@onready var icon: TextureRect = $AchievementsDesc/LeftSide/Icon
+@onready var icon: TextureRect = $%Icon
 var img_path: String = ""
-@onready var icon_click: Button = $AchievementsDesc/LeftSide/Icon/IconClick
-@onready var image_selection: FileDialog = $AchievementsDesc/ImageSelection
+@onready var icon_click: Button = $%IconClick
+@onready var image_selection: FileDialog = $%ImageSelection
 
-@onready var done_check_box: CheckBox = $AchievementsDesc/Title/ManageDeleteButton/done
-@onready var title: LineEdit = $AchievementsDesc/Title/ManageDeleteButton/Title
-@onready var description_text_edit: TextEdit = $AchievementsDesc/Title/DescriptionTextEdit
-@onready var delete_achievement_button: Button = $AchievementsDesc/Title/ManageDeleteButton/DeleteAchievementButton
+@onready var done_check_box: CheckBox = $%Done
+@onready var title: LineEdit = $%Title
+@onready var description_text_edit: TextEdit = $%DescriptionTextEdit
+@onready var delete_achievement_button: Button = $%DeleteAchievementButton
 
-@onready var guide_detail: RichTextLabel = $GuideDetail
-@onready var guide_edit: TextEdit = $GuideEdit
+@onready var guide_detail: RichTextLabel = $%GuideDetail
+@onready var guide_edit: TextEdit = $%GuideEdit
 var guide_bbcode_string: String = "" # Used to stock the raw BBCode so we can retrieve it
-
-@export var MIN_SIZE_DEFAULT : Vector2 = Vector2(248,80)
-@export var MIN_SIZE_FOLDED : Vector2 = Vector2(248,50)
 
 var is_edit_on: bool = false
 var is_achievement_done: bool = false
 var is_folded: bool = false
 
 func _ready() -> void:
-	$".".custom_minimum_size = MIN_SIZE_DEFAULT
 	
 	## Make sure that on creation the edit mode is false, use toggle_edit(bool) to enable edit mode
-	delete_achievement_button.visible = false
-	guide_edit.visible = false
+	delete_achievement_button.hide()
+	guide_edit.hide()
 	guide_edit.editable = false
 	guide_bbcode_string = guide_detail.text
 	guide_edit.text = guide_detail.text
@@ -108,7 +104,6 @@ func _on_delete_achievement_button_pressed() -> void:
 		
 	if root is RootElement:
 		root.troph_list.erase(self)
-		root.remove_child(self)
 		self.call_deferred("queue_free") # better safe than sorry
 
 func _on_fold_button_pressed() -> void:
@@ -116,15 +111,12 @@ func _on_fold_button_pressed() -> void:
 	guide_detail.visible = is_folded
 	guide_edit.visible = is_folded
 	is_folded = !is_folded
-	if is_folded : 
-		$".".custom_minimum_size = MIN_SIZE_FOLDED 
-	else :
-		$".".custom_minimum_size = MIN_SIZE_DEFAULT
+	if !is_folded : 
 		untoggle_edit_logic(is_edit_on)
 
 func hide_guide_if_empty() -> void:
 	if guide_detail.text.is_empty():
-		guide_detail.visible = false
+		guide_detail.hide()
 
 func _on_done_toggled(toggled_on: bool) -> void:
 	is_achievement_done = toggled_on

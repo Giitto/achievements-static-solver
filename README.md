@@ -16,7 +16,8 @@ At the top of the windows there is 4 buttons, the first create a new achievement
 ##### Add achievement
 Straight forward, add an achievement
 ##### Option
-There is two option save and load, both of these option will open a window in order to load or save **.ass** file.
+- Save & Load
+The save and load option, both of these option will open a window in order to load or save **.ass** file.
 **.ass** is just plain text using JSON logic, here is a example file :
 
     [
@@ -45,6 +46,13 @@ There is two option save and load, both of these option will open a window in or
 	    	"title": "Load as folded abd done"
 	    }
     ]
+
+- Config
+Open a window to setup different parameter used by the app :
+    - Steam API Key [can be found and setup here](https://steamcommunity.com/dev/apikey)
+    - Steam user Id
+- Steam import
+Open a window where you input the steam game ID in order to import achievements list.
 
 ##### Edit mode
 You can toggle on and off the edit mode a with the last button at the right. This mode enable the possibility to edit all text and the icon of the achievement. Clicking the image on edit mode will open a window to select an image to put in achievement icon, the type compatible with Godot are already filtered. You don't need to be in edit mode to mark and Achievement as done.

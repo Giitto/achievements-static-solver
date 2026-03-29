@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://g5put0m47fmx"]
 
 [ext_resource type="Script" uid="uid://cafmudm0poted" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dsb8w78r3f45t" path="res://config/config_pop_up.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://8sv628bu46on" path="res://SteamImportWindow/SteamImportWindow.tscn" id="3_h2yge"]
 
 [node name="Main" type="VBoxContainer" unique_id=533452990]
 clip_contents = true
@@ -35,11 +37,15 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 0
 text = "Option"
-item_count = 2
+item_count = 4
 popup/item_0/text = "Save"
 popup/item_0/id = 0
 popup/item_1/text = "Load"
 popup/item_1/id = 1
+popup/item_2/text = "Config"
+popup/item_2/id = 2
+popup/item_3/text = "Steam Import"
+popup/item_3/id = 3
 
 [node name="EditMode" type="CheckButton" parent="MarginContainer/VBoxContainer" unique_id=94013553]
 unique_name_in_owner = true
@@ -66,13 +72,34 @@ size_flags_horizontal = 3
 
 [node name="SaveFileDialog" type="FileDialog" parent="." unique_id=2005529454]
 unique_name_in_owner = true
+popup_window = true
+hidden_files_toggle_enabled = false
+file_filter_toggle_enabled = false
+deleting_enabled = false
 
 [node name="LoadFileDialog" type="FileDialog" parent="." unique_id=1500800164]
 unique_name_in_owner = true
+title = "Open a File"
+popup_window = true
+file_mode = 0
+hidden_files_toggle_enabled = false
+file_filter_toggle_enabled = false
+deleting_enabled = false
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="." unique_id=487752389]
 unique_name_in_owner = true
 dialog_text = "Are you sure you want to quit ? You maybe want to save before."
+
+[node name="SteamGameAchivementAPICall" type="HTTPRequest" parent="." unique_id=431331099]
+unique_name_in_owner = true
+
+[node name="ConfigWindow" parent="." unique_id=1502025438 instance=ExtResource("2_0xm2m")]
+unique_name_in_owner = true
+visible = false
+
+[node name="SteamImportWindow" parent="." unique_id=31630033 instance=ExtResource("3_h2yge")]
+unique_name_in_owner = true
+visible = false
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/addAchievementButton" to="." method="_on_add_achievement_button_pressed"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/EditMode" to="." method="_on_edit_mode_toggled"]
@@ -80,3 +107,5 @@ dialog_text = "Are you sure you want to quit ? You maybe want to save before."
 [connection signal="file_selected" from="SaveFileDialog" to="." method="_on_save_file_dialog_file_selected"]
 [connection signal="file_selected" from="LoadFileDialog" to="." method="_on_load_file_dialog_file_selected"]
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
+[connection signal="request_completed" from="SteamGameAchivementAPICall" to="." method="_on_steam_game_achivement_api_call_request_completed"]
+[connection signal="call_import_api" from="SteamImportWindow" to="." method="_on_steam_import_window_call_import_api"]

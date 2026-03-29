@@ -63,6 +63,7 @@ The achievement is composed of the listed component :
 - Guide text bloc with Godot BBCode capabilities
 
 Only the checkbox and the fold button can be changed outside edit mode.
+Clicking the image of an achievement in edit mode open a file explorer to select an image compatible with the godot engine ( *.bmp, *.dds, *.ktx, *.exr, *.hdr, *.jpg, *.jpeg, *.png, *.tga, *.svg, *.webp )
 Intended use of the checkbox is to mark the achievement as done, the fold button is to hide all text aside from the title.
 The guide text bloc is hidden if empty and shows up in edit mode. More info on BBCode in Godot [here](https://github.com/godotengine/godot-demo-projects/tree/4.2-31d1c0c/gui/rich_text_bbcode) and BBCode in general [here](https://www.bbcode.org/how-to-use-bbcode-a-complete-guide.php)
 

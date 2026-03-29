@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AppConfig" format=3 uid="uid://ccu5favh4s2yy"]
+
+[ext_resource type="Script" uid="uid://dgkoxvpmqp3n3" path="res://config/app_config.gd" id="1_cq5rw"]
+
+[resource]
+resource_name = "app_config"
+script = ExtResource("1_cq5rw")
+metadata/SteamAPIKey = ""
+metadata/SteamUserId = ""

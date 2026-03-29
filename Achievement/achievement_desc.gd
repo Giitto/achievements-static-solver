@@ -45,6 +45,7 @@ func toggle_edit(is_edit : bool) -> void:
 	is_edit_on = is_edit
 	delete_achievement_button.visible = is_edit
 	title.editable = is_edit
+	description_text_edit.placeholder_text = "Achievement description" if is_edit else ""
 	toggle_icon_onclick_event(is_edit)
 	if is_folded:
 		return
@@ -78,6 +79,7 @@ func toggle_icon_onclick_event(is_edit : bool) -> void:
 # Open FileDialog to load an image for this achievement
 func _icon_on_click_event() -> void: 
 	image_selection.popup_centered_ratio()
+	image_selection.set_current_path("user://Image/")
 
 # Called by imageselection FileDialog on file selected
 func _on_image_selection_file_selected(path: String) -> void:

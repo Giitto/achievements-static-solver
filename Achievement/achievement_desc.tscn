@@ -115,7 +115,6 @@ tooltip_text = "Achievement description/text"
 theme_override_font_sizes/font_size = 9
 theme_override_styles/normal = SubResource("StyleBoxEmpty_e1s4n")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_q3qpa")
-placeholder_text = "Achievement description"
 editable = false
 wrap_mode = 1
 autowrap_mode = 2

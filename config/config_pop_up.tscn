@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://dsb8w78r3f45t"]
+
+[ext_resource type="Script" uid="uid://d2nbukwa7dfwh" path="res://config/config_pop_up.gd" id="1_p0r6s"]
+
+[node name="ConfigPopUp" type="Window" unique_id=255028800]
+oversampling_override = 1.0
+size = Vector2i(400, 400)
+popup_window = true
+script = ExtResource("1_p0r6s")
+
+[node name="ConfigMarginContainer" type="MarginContainer" parent="." unique_id=1492356201]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ConfigKeyValue" type="VBoxContainer" parent="ConfigMarginContainer" unique_id=905779871]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ConfigTopLabel" type="Label" parent="ConfigMarginContainer/ConfigKeyValue" unique_id=1157179069]
+layout_mode = 2
+text = "Configuration"
+
+[node name="SteamAPIKey" type="HBoxContainer" parent="ConfigMarginContainer/ConfigKeyValue" unique_id=1309500072]
+layout_mode = 2
+
+[node name="SteamKeyLabel" type="Label" parent="ConfigMarginContainer/ConfigKeyValue/SteamAPIKey" unique_id=1832293987]
+layout_mode = 2
+text = "Steam API key"
+
+[node name="SteamKeyValue" type="LineEdit" parent="ConfigMarginContainer/ConfigKeyValue/SteamAPIKey" unique_id=468124267]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+secret = true
+secret_character = "*"
+
+[node name="SteamUserId" type="HBoxContainer" parent="ConfigMarginContainer/ConfigKeyValue" unique_id=1804349740]
+layout_mode = 2
+
+[node name="SteamUserIdLabel" type="Label" parent="ConfigMarginContainer/ConfigKeyValue/SteamUserId" unique_id=894555384]
+layout_mode = 2
+text = "Steam user ID"
+
+[node name="SteamUserIdValue" type="LineEdit" parent="ConfigMarginContainer/ConfigKeyValue/SteamUserId" unique_id=593810744]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="ButtonContainer" type="HBoxContainer" parent="ConfigMarginContainer/ConfigKeyValue" unique_id=620884741]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="SaveConfigButton" type="Button" parent="ConfigMarginContainer/ConfigKeyValue/ButtonContainer" unique_id=1682433805]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "save"
+
+[node name="CloseButton" type="Button" parent="ConfigMarginContainer/ConfigKeyValue/ButtonContainer" unique_id=135414094]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "close"
+
+[connection signal="pressed" from="ConfigMarginContainer/ConfigKeyValue/ButtonContainer/SaveConfigButton" to="." method="_on_save_config_button_pressed"]
+[connection signal="pressed" from="ConfigMarginContainer/ConfigKeyValue/ButtonContainer/CloseButton" to="." method="_on_close_button_pressed"]

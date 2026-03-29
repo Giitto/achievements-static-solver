@@ -1,6 +1,8 @@
 extends VBoxContainer
 class_name RootElement
 
+@onready var ACHIEVEMENT_SCENE = preload("res://Achievement/achievement_desc.tscn")
+
 @onready var main: VBoxContainer = $"."
 @onready var menu_button: MenuButton = $%Option
 @onready var achievement_box: VBoxContainer = $%AchievementBox
@@ -8,14 +10,23 @@ class_name RootElement
 @onready var load_file_dialog: FileDialog = $%LoadFileDialog
 @onready var save_file_dialog: FileDialog = $%SaveFileDialog
 @onready var confirmation_dialog: ConfirmationDialog = $%ConfirmationDialog
+@onready var config_pop_up: ConfigWindow = %ConfigWindow
+@onready var steam_import_window: SteamImportWindow = %SteamImportWindow
+
+@onready var steam_game_achivement_api_call: HTTPRequest = %SteamGameAchivementAPICall
+var urlSchemaForGame:="https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?"
 
 var is_edit_on :bool = false
 
 var troph_list:Array[Achievement] = [];
 
+func call_steam_api(app_id:String):
+	var key := config_pop_up.steam_key_value.text
+	var final_url := urlSchemaForGame + "appid=" + app_id + "&key=" + key
+	steam_game_achivement_api_call.request(final_url)
+	return
+
 func _ready() -> void:
-	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,true)
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	menu_button.get_popup().id_pressed.connect(_on_option_item_selected)
 	for ach in troph_list:
 		ach.toggle_edit(is_edit_on)
@@ -33,36 +44,52 @@ func _ready() -> void:
 	load_file_dialog.set_access(FileDialog.ACCESS_FILESYSTEM)
 	save_file_dialog.set_file_mode(FileDialog.FILE_MODE_SAVE_FILE)
 	save_file_dialog.set_access(FileDialog.ACCESS_FILESYSTEM)
-	# Make FileDialog popout of the game engine
-	load_file_dialog.set_use_native_dialog(true)
-	load_file_dialog.set_force_native(true)
-	save_file_dialog.set_use_native_dialog(true)
-	save_file_dialog.set_force_native(true)
+
 
 ## Create a new instance of Achievement and put it in the VBoxContainer AchievementBox
 func _on_add_achievement_button_pressed() -> void:
 	add_achievement()
 
 func add_achievement(data : Dictionary = {}) -> void:
-	var ui_scene = preload("res://Achievement/achievement_desc.tscn")
-	var ui_instance : Achievement = ui_scene.instantiate()
+	var new_achievement = instanciate_new_achievement()
+	if !data.is_empty():
+		new_achievement.from_dict(AchievementDict.new(data))
+	new_achievement.toggle_edit(is_edit_on)
+
+func add_achievement_from_achievement_dict(data : AchievementDict) -> void:
+	var new_achievement = instanciate_new_achievement()
+	new_achievement.from_dict(data)
+	new_achievement.toggle_edit(is_edit_on)
+
+func instanciate_new_achievement() -> Achievement:
+	var ui_instance : Achievement = ACHIEVEMENT_SCENE.instantiate()
 	achievement_box.add_child(ui_instance)
 	troph_list.append(ui_instance)
-	if !data.is_empty():
-		ui_instance.from_dict(AchievementDict.new(data))
-	ui_instance.toggle_edit(is_edit_on)
+	return ui_instance
 
 func _on_option_item_selected(index: int) -> void:
 	if index == 0:
 		save_achievement_state()
 	elif index == 1:
 		load_achievement_state()
+	elif index == 2:
+		open_config_popup()
+	elif index == 3:
+		open_steam_import()
 
 func save_achievement_state() -> void:
 	save_file_dialog.popup_file_dialog()
 
 func load_achievement_state() -> void:
 	load_file_dialog.popup_file_dialog()
+
+func open_config_popup() -> void:
+	config_pop_up.show()
+	config_pop_up.popup_centered()
+
+func open_steam_import() -> void:
+	steam_import_window.show()
+	steam_import_window.popup_centered()
 
 func _on_edit_mode_toggled(toggled_on: bool) -> void:
 	is_edit_on = toggled_on
@@ -107,3 +134,22 @@ func _on_quit_pressed() -> void:
 
 func _on_confirmation_dialog_confirmed() -> void:
 	get_tree().quit()
+
+func _on_steam_game_achivement_api_call_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	if result != HTTPRequest.RESULT_SUCCESS:
+		print(response_code)
+		print(headers)
+		return
+	var json = JSON.parse_string(body.get_string_from_utf8())
+	if !json || !json.get("game"):
+		print("game id not found")
+		return
+	var parsed:Array[AchievementDict] = steam_import_window.parse_api_response(json)
+	if !parsed || parsed.is_empty():
+		return
+	for data in parsed:
+		add_achievement_from_achievement_dict(data)
+	steam_import_window.hide()
+
+func _on_steam_import_window_call_import_api(gameid: String) -> void:
+	call_steam_api(gameid)
